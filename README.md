@@ -1,3 +1,9 @@
+# 이미지 생성 사이트 프로젝트
+
+```
+django, react 쓰고 나머지는 구상중
+```
+
 # python version
 ```
 Python 3.9.16
