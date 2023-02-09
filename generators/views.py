@@ -23,4 +23,3 @@ class CreateImage(generics.CreateAPIView):
             response = openai.Image.create(prompt=prompt, n=n, size=size, response_format=response_format, api_key=api_key)
             return Response(response)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
