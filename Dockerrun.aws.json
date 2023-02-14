@@ -1,0 +1,16 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "web",
+      "Update": "true"
+    },
+    "Ports": [
+        {
+            "ContainerPort": 8000,
+            "HostPort": 8000
+          }
+    ],
+    "Volumes": [],
+    "Logging": [],
+    "Cmd": ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "mysite.wsgi", "--access-logfile", "access.log", "--error-logfile", "error.log"]
+  }
