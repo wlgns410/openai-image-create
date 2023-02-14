@@ -23,6 +23,12 @@ RUN pip3 install -r package-1.txt
 
 EXPOSE 8000
 CMD ["sh", "on-container-start.sh"]
+
+
+
+
+
+
 # CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
 
 # CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "mysite.wsgi:application", "--access-logfile", "access.log", "--error-logfile", "error.log"]
