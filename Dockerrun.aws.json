@@ -12,5 +12,5 @@
     ],
     "Volumes": [],
     "Logging": [],
-    "Cmd": ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "mysite.wsgi", "--access-logfile", "access.log", "--error-logfile", "error.log"]
+    "Cmd": ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "mysite.wsgi:application", "--access-logfile", "access.log", "--error-logfile", "error.log"]
   }
