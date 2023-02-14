@@ -9,8 +9,5 @@
             "ContainerPort": 8000,
             "HostPort": 8000
           }
-    ],
-    "Volumes": [],
-    "Logging": [],
-    "Cmd": ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
-  }
+    ]
+}

@@ -1,5 +1,4 @@
-secret.txt
 logs/
-.env
+
 db.sqlite3
 
