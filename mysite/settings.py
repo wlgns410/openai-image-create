@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mmm2q!1&+*p22w69uy$oe+eser4+46xe_a$@48!_ead5#!ss%q
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://openai-test0938-5.eba-sw2iccmj.ap-northeast-2.elasticbeanstalk.com",
+    "openai-test0938-5.eba-sw2iccmj.ap-northeast-2.elasticbeanstalk.com",
     ]
 
 
