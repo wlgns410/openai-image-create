@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-mmm2q!1&+*p22w69uy$oe+eser4+46xe_a$@48!_ead5#!ss%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "https://openai-test0938-5.eba-sw2iccmj.ap-northeast-2.elasticbeanstalk.com",
+    ]
 
 
 # Application definition
