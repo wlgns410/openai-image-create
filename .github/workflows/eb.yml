@@ -38,14 +38,24 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: innail/django
-          IMAGE_TAG: v1.1.11
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      # - name: Print image tag
-      #   run: echo ${{ env.IMAGE_TAG }}
+      - name: Generate deployment package
+        run: |
+          mkdir -p deploy
+          cp Dockerrun.aws.json deploy/Dockerrun.aws.json
+          cd deploy && zip -r deploy.zip .
+
+        - name: Get current time
+          uses: 1466587594/get-current-time@v2
+          id: current-time
+          with:
+            format: YYYYMMDD_HH-mm-ss
+            utcOffset: "+09:00"
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v14
@@ -54,6 +64,10 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: openai-test0938
           environment_name: openai-test0938-5
-          version_label: v1.1.11
+          version_label: eb-test-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
+          deployment_package: deploy/deploy.zip
           wait_for_deployment: true
+          
+        env:
+          IMAGE_TAG: ${{ github.sha }}
