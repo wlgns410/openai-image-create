@@ -1,17 +1,17 @@
-name: EB Deploy
+name: Deploy to Elastic Beanstalk
+
 on:
   push:
     branches:
       - main
 
-
 jobs:
-  build-and-push-image:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -20,36 +20,29 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-
-      - name: Login to ECR
+      - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and push Docker images to ECR
+      - name: Build and push Docker image
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: innail/django
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Generate deployment package
-        run: |
-          mkdir -p deploy
-          cp Dockerrun.aws.json deploy/Dockerrun.aws.json
-          cd deploy && zip -r deploy.zip .
-
-      - name: Beanstalk Deploy
+      - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v14
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: [EB 어플리케이션 이름]
-          environment_name: [EB 환경 이름]
-          version_label: earth-docker-${{steps.current-time.outputs.formattedTime}}
+          application_name: openai-test0938
+          environment_name: openai-test0938-5
+          version_label: ${{ github.sha }}
           region: ap-northeast-2
-          deployment_package: deploy/deploy.zip
-          wait_for_environment_recovery: 200
+          wait_for_deployment: true
+          command: "ecs-deploy"
+          command_options: "--timeout 1000"
