@@ -65,9 +65,10 @@ jobs:
           application_name: openai-test0938
           environment_name: openai-test0938-5
           version_label: eb-test-${{steps.current-time.outputs.formattedTime}}
+          Version description: EB-TEST
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
-          wait_for_deployment: true
+          wait_for_environment_recovery: 200
           
         env:
           IMAGE_TAG: ${{ github.sha }}
