@@ -5,8 +5,7 @@ on:
     branches:
       - main
 
-env:
-  IMAGE_TAG: ${{ github.sha }}
+
 
 jobs:
   deploy:
@@ -38,9 +37,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: innail/django
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: v1.0.13
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker buildx build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 

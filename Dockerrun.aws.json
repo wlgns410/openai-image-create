@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "{AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-2.amazonaws.com/{REPOSITORY_NAME}:{IMAGE_TAG}",
+      "Name": "394804635547.dkr.ecr.ap-northeast-2.amazonaws.com/innail/django:v1.0.13",
       "Update": "true"
     },
     "Ports": [
