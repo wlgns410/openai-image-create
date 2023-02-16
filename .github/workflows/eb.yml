@@ -50,12 +50,12 @@ jobs:
           cp Dockerrun.aws.json deploy/Dockerrun.aws.json
           cd deploy && zip -r deploy.zip .
 
-        - name: Get current time
-          uses: 1466587594/get-current-time@v2
-          id: current-time
-          with:
-            format: YYYYMMDD_HH-mm-ss
-            utcOffset: "+09:00"
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD_HH-mm-ss
+          utcOffset: "+09:00"
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v14
