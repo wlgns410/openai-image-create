@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "394804635547.dkr.ecr.ap-northeast-2.amazonaws.com/innail/django:latest",
+      "Name": "394804635547.dkr.ecr.ap-northeast-2.amazonaws.com/innail/django:$IMAGE_TAG",
       "Update": "true"
     },
     "Ports": [
