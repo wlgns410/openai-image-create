@@ -43,8 +43,9 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Update Dockerrun.aws.json with ECR image path
-        - run: sed -i "s|\"Name\": \".*\"|\"Name\": \"${{ steps.build-image.outputs.image }}\"|g" Dockerrun.aws.json
+      - name: Update Dockerrun file with ECR image path
+        run: |
+          sed -i "s|\"Name\": \".*\"|\"Name\": \"${{ steps.build-image.outputs.image }}\"|g" Dockerrun.aws.json
 
       - name: Generate deployment package
         run: |
