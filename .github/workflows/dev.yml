@@ -1,11 +1,10 @@
-name: Deploy to Elastic Beanstalk
+name: DEV Server Beanstalk Deploy
 
-on:
-  push:
-    branches:
-      - main
-
-
+# on:
+#   pull_request:
+#       types: [opened, reopened]
+#       branches:
+#           - develop
 
 jobs:
   deploy:
