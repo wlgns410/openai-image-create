@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "openai-test0938-5.eba-sw2iccmj.ap-northeast-2.elasticbeanstalk.com",
-    "beanstalk-test.linkerverse.net"
+    "beanstalk-test.linkerverse.net",
+    "localhost"
     ]
 
 
