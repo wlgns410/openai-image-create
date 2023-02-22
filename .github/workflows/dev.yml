@@ -1,10 +1,12 @@
 name: DEV Server Beanstalk Deploy
 
-# on:
-#   pull_request:
-#       types: [opened, reopened]
-#       branches:
-#           - develop
+
+on:
+  push:
+    branches:
+      - main
+
+
 
 jobs:
   deploy:

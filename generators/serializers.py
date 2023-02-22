@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from rest_framework import serializers
 
 
-# load_dotenv()
-# mySecret = os.environ.get('OPENAI_API_KEY')
-mySecret="test"
+load_dotenv()
+mySecret = os.environ.get('OPENAI_API_KEY')
+# mySecret="test"
 
 class ImageSerializer(serializers.Serializer):
     prompt = serializers.CharField()
